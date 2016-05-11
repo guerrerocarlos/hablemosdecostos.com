@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hablemos de costos</title>
+  <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="css/docs.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,900,900italic,500italic,500' rel='stylesheet' type='text/css'>
+</head>
+<script>
+  window.onload = function() {
+    var seleccion = undefined
+    var button = document.getElementById('quieroA')
+
+    function setContactTitle(text) {
+      var all_text = "Usted seleccionó el plan: "
+      document.getElementById('titulocontacto').innerHTML = all_text + text
+    }
+
+    function scrollTo(hash) {
+      location.hash = "#" + hash;
+    }
+    button.addEventListener("click", function() {
+      seleccion = 'Gratis'
+      setContactTitle(seleccion)
+      scrollTo('#titulocontacto')
+    })
+    var button = document.getElementById('quieroB')
+    button.addEventListener("click", function() {
+      seleccion = 'Básico'
+      setContactTitle(seleccion)
+    })
+    var button = document.getElementById('quieroC')
+    button.addEventListener("click", function() {
+      seleccion = 'Premium'
+      setContactTitle(seleccion)
+    })
+    var button = document.getElementById('quieroD')
+    button.addEventListener("click", function() {
+      seleccion = 'Avanzado'
+      setContactTitle(seleccion)
+    })
+
+    var button = document.getElementById('buttonbottom')
+    button.addEventListener("click", function() {
+
+
+      console.log('click action...')
+      xhr = new XMLHttpRequest();
+      var url = "https://hooks.slack.com/services/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";
+      xhr.open("POST", url, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var json = JSON.parse(xhr.responseText);
+          console.log(json)
+        }
+      }
+      var nombre = document.getElementById('nombres').value
+      var fijo = document.getElementById('fijo').value
+      var celular = document.getElementById('celular').value
+      var correo = document.getElementById('correo').value
+      var texto = document.getElementById('texto').value
+      if (seleccion == undefined) {
+        seleccion = 'Ninguna'
+      }
+      xhr.send('{"text": "Nueva persona interesada en OdooPOS:\nNombres: ' + nombre + ' \nCorreo: '+correo+'\nTeléfono fijo: ' + fijo + '\nCelular: ' + celular + '\nEscribió:' + texto + ' \nSeleccionó: ' + seleccion +
+        '", "username": "ODOO POS", "icon_emoji": ":computer:"}');
+        var enviado = document.getElementById('enviado')
+        enviado.style.visibility = "visible";
+        var form = document.getElementById('formulario')
+        form.remove()
+
+    })
+  }
+</script>
+
+<body style="background-color:black; color: white; font-family: 'Roboto', sans-serif;">
+
+  <header>
+    <div class="row">
+
+      <div class="medium-3 large-9 columns">
+        ODOO POS Restaurantes
+      </div>
+      <div class="medium-7 large-3 columns">
+        (Chile) +56 9 5102 7576
+      </div>
+
+    </div>
+  </header>
+
+  <div class="row">
+    <div class="small-12 large-12 columns">
+      <div class="flex-video widescreen">
+        <iframe src="//www.youtube.com/embed/jy0b772dC3g?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="callout primary">
+        <h3 style="font-family: 'Roboto', sans-serif;">La solución para su negocio</h3>
+        <p>Sabemos que tener un restaurante es un negocio complejo, por ende instalar un sistema de pantallas táctiles, impresoras y <i>comandas</i> tiene costos muy elevados. Además, es muy dificil decidir cual se adapta a sus necesidades.
+          </br>
+          </br>
+          Es por ello que hemos decidido crear esta nueva alternativa y apoyar a todos los emprendimientos, de modo que usted pueda:</p>
+          <ul class="circle" style="margin-left: 30px;">
+            <li> Probar el sistema en funcionamiento en su restaurant durante 2 semanas <b>sin costo</b>.</li>
+            <li>Decidir si relamente se adapta a sus necesidades y soluciona sus problemas.</li>
+            <li>Devolver los equipos en caso de no estar satisfecho con el servicio. <b>Sin costo</b>.</li>
+          </ul>
+          <h5 style="font-family: 'Roboto', sans-serif;">¿Cómo funciona?</h5>
+
+           <p>Con nuestra ayuda ya no tendrá que preocuparse de realizar una <b>inversión</b>, no nos enfocamos en la venta de equipos ni software, queremos brindar solución integral que le permita concentrarse en lo que es realmente importante
+          para su negocio con el menor riesgo y la máxima satisfacción.
+        </br>
+        </br>
+          Con solo <b>pagar un monto mensual</b> usted tendrá todo el servicio funcionando, nosotros nos encargamos de comprar e instalar todos los equipos, mantenerlos, actualizarlos, incluso nos aseguramos de proveerle suficiente papel para las impresoras.
+        </br>
+
+      </br>Si en algún momento decide no requerir más del servicio, procederemos a retirar los equipos y no tendrá más nada de que preocuparse.</p>
+        </p>
+      </div>
+      </br>
+      </br>
+
+      <div class="small-12 large-12 columns text-center">
+        <h3 style="font-family: 'Roboto', sans-serif;">Cuentas claras:</h3>
+        </br>
+        </br>
+      </div>
+      <div class="small-12 large-3 columns">
+        <ul class="pricing-table">
+          <li class="title">Prueba</li>
+          <li class="price">15 días <b>Gratis</b></li>
+          <li class="description">Instalación <b>gratis</b> de todos los equipos. Incluye uso del servicio durante dos semanas en su restaurant. Sin compromiso. Ciertas condiciones aplican, número de equipos limitado.</li>
+          <li class="bullet-item"><b>1</b> Pantalla táctil industrial</li>
+          <li class="bullet-item"><b>1</b> Impresora de Boletas/Facturas</li>
+          <li class="bullet-item"><b>1</b> Impresora de Comandas</li>
+          <li class="bullet-item"><b>4</b> Rollos de papel</li>
+          <li class="bullet-item">Capacitación básica</li>
+          <li class="cta-button"><a id='quieroA' class="button" href="#titulocontacto">Lo quiero!</a></li>
+        </ul>
+      </div>
+
+      <div class="small-12 large-3 columns">
+        <ul class="pricing-table">
+          <li class="title">Básico</li>
+          <li class="price">119.000clp / mes</li>
+          <li class="description">Instalación <b>gratis</b>, incluye todos los equipos necesarios.</li>
+          <li class="bullet-item"><b>Soporte técnico</b></li>
+          <li class="bullet-item"><b>1</b> Pantalla táctil industrial</li>
+          <li class="bullet-item"><b>1</b> Impresora de Boletas/Facturas</li>
+          <li class="bullet-item"><b>1</b> Impresora de Comandas</li>
+          <li class="bullet-item"><b>4</b> Rollos de papel</li>
+          <li class="bullet-item">Capacitación general</li>
+          <li class="cta-button"><a id='quieroB' class="button" href="#titulocontacto">Lo quiero!</a></li>
+        </ul>
+      </div>
+
+      <div class="small-12 large-3 columns">
+        <ul class="pricing-table">
+          <li class="title">Premium</li>
+          <li class="price">149.000clp / mes</li>
+          <li class="description">Instalación <b>gratis</b>, incluye todos los equipos necesarios.</li>
+          <li class="bullet-item"><b>Soporte técnico</b></li>
+          <li class="bullet-item"><b>1</b> Pantalla táctil industrial</li>
+          <li class="bullet-item"><b>1</b> Impresora de Boletas/Facturas</li>
+          <li class="bullet-item"><b>1</b> Impresora de C. Cocina</li>
+          <li class="bullet-item"><b>1</b> Impresora de C. Barra</li>
+          <li class="bullet-item"><b>4</b> Rollos de papel para cada Impresora / mes</li>
+          <li class="bullet-item">Capacitación general</li>
+          <li class="cta-button"><a id='quieroC' class="button" href="#titulocontacto">Lo quiero!</a></li>
+        </ul>
+      </div>
+
+      <div class="small-12 large-3 columns">
+        <ul class="pricing-table">
+          <li class="title">Avanzado</li>
+          <li class="price">consultar</li>
+          <li class="description">Instalación <b>gratis</b>, incluye todos los equipos necesarios.</li>
+          <li class="bullet-item"><b>Soporte técnico</b></li>
+          <li class="bullet-item"><b>2+</b> Pantallas táctil</li>
+          <li class="bullet-item"><b>1</b> Impresora de Boletas/Facturas</li>
+          <li class="bullet-item"><b>3+</b> Impresoras de Comandas</li>
+          <li class="bullet-item"><b>1</b> Impresoras de Comandas Barra</li>
+          <li class="bullet-item">Capacitación avanzada</li>
+          <li class="bullet-item"><b>Adaptación de nuevas funcionalidades</b></li>
+          <li class="cta-button"><a id='quieroD' class="button" href="#titulocontacto">Lo quiero!</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div id="formulario" class="row">
+    <div class="small-2 large-2 columns">
+      a
+    </div>
+    <div class="small-8 large-8 columns">
+
+      <div class="small-12 large-12 columns text-center">
+        <br></br>
+        <br></br>
+
+        <h3 id='titulocontacto'>Para mas información</h3>
+        <h5>Llene los siguientes datos y lo contactaremos a la brevedad:</h5>
+        <br></br>
+
+      </div>
+      <form>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Nombre y Apellido
+              <input id="nombres" type="text" placeholder="" />
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Teléfono Fijo
+              <input id="fijo" type="text" placeholder="" />
+            </label>
+          </div>
+          <div class="large-6 columns">
+            <label>Celular/Móvil
+              <input id="celular" type="text" placeholder="" />
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Correo electrónico
+              <input id="correo" type="text" placeholder="correo@gmail.com" />
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>¿Alguna pregunta que ya tenga?
+              <textarea id="texto" placeholder=""></textarea>
+            </label>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <div class="small-2 large-2 columns">
+    </div>
+    <div class="small-12 large-12 columns text-center">
+      <a id='buttonbottom' class="button" href="#formulario">Contáctenme</a>
+    </div>
+  </div>
+
+
+
+  <div id="enviado" class="row" style="visibility: hidden;">
+    <div class="small-12 large-12 columns">
+
+      <div class="small-12 large-12 columns text-center">
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
+        <h3 id='titulocontacto'>Gracias por su información.</h3>
+        <h5>Nos estaremos comunicando con usted.</h5>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
+
+      </div>
+    </div>
+  </div>
+
+
+</body>
